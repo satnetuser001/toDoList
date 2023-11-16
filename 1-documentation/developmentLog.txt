@@ -9,3 +9,22 @@ Created a new MySQL database and its user (the commands are executed as Mysql ro
 
 Installed a new Laravel project:
 	composer create-project --prefer-dist laravel/laravel toDoList
+
+Created a new Git repository and pushed it to GitHub:
+	git init
+	git add .
+	git commit
+	git remote add origin git@github.com:satnetuser001/toDoList.git
+	git branch -M main
+	git push -u origin main
+Further, Git commits will not be described, they can be viewed on Github.
+
+Added database setting to .env.
+Removed the listing of all files from .gitignor so that the entire project can be seen on GitHub.
+
+Installed Sanctum:
+	composer require laravel/sanctum
+	php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+	php artisan migrate
+
+New commit: Installed Sanctum.
