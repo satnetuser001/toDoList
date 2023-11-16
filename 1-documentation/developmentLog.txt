@@ -37,3 +37,6 @@ Created UserController:
 
 Registering a new user functionality was added: route and method in the controller.
 New commit.
+
+Regenerate user token functionality was added: route and method in the controller.
+New commit.

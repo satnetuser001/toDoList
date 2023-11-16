@@ -23,5 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //User routes
 Route::prefix('users')->group(function () {
     Route::post('/register', [UserController::class, 'register']);
-    //Route::post('/newToken', [UserController::class, 'newToken']);
+    Route::patch('/regenerateToken', [UserController::class, 'regenerateToken']);
 });
