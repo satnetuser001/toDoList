@@ -1,0 +1,11 @@
+16.11.23
+Created a new MySQL database and its user (the commands are executed as Mysql root):
+	CREATE DATABASE to_do_list
+	CHARACTER SET utf8
+	COLLATE utf8_general_ci;
+
+	CREATE USER 'to_do_list_user'@'localhost' IDENTIFIED BY '1077';
+	GRANT ALL PRIVILEGES ON to_do_list.* TO 'to_do_list_user'@'localhost';
+
+Installed a new Laravel project:
+	composer create-project --prefer-dist laravel/laravel toDoList
