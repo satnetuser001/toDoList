@@ -28,3 +28,12 @@ Installed Sanctum:
 	php artisan migrate
 
 New commit: Installed Sanctum.
+
+Divided the functionality of the application into two parts: Users and Tasks.
+
+Users functionality:
+Created UserController:
+	php artisan make:controller API/UserController
+
+Registering a new user functionality was added: route and method in the controller.
+New commit.
