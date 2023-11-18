@@ -61,3 +61,11 @@ Filling out the migration and applying it:
 	php artisan migrate
 
 Added the necessary properties and methods to the User and Task models.
+
+Added "store tasks" functionality.
+New commit.
+
+Added "Get all user tasks" functionality.
+
+Added "Get one user task" functionality.
+New commit.

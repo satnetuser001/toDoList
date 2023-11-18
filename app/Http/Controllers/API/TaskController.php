@@ -21,6 +21,27 @@ class TaskController extends Controller
     }
 
     /**
+     * Get all user tasks.
+     *
+     * @param  void
+     * @return json tasks array
+     */
+    public function allMy(){
+        $tasks = Auth::user()->tasks()->where('parent_id', '=', NULL)->latest()->get();
+        return response()->json($tasks, 200);
+    }
+
+    /**
+     * Get one user tasks.
+     *
+     * @param  task ID
+     * @return json tasks | json tasks array
+     */
+    public function oneMy(Task $task){
+        return response()->json($task, 200);
+    }
+
+    /**
      * Store a new task.
      *
      * @param  Request

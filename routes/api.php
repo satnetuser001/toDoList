@@ -28,5 +28,7 @@ Route::prefix('users')->group(function () {
 
 //Task routes
 Route::prefix('tasks')->group(function () {
+    Route::get('/allMy', [TaskController::class, 'allMy']);
+    Route::get('/{task}', [TaskController::class, 'oneMy']);
     Route::post('/store', [TaskController::class, 'store']);
 });
