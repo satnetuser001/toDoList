@@ -82,3 +82,5 @@ Mapping the model to policy in AuthServiceProvider.
 Applied the Policy to the necessary TaskController methods in the construct (oneMy).
 
 New commit.
+
+3. Added "delete task" functionality.

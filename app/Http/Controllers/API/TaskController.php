@@ -17,7 +17,7 @@ class TaskController extends Controller
         $this->middleware('auth:sanctum');
 
         //Policy: only the owner of the task can view, edit, delete it.
-        $this->middleware('can:isOwner,task')->only(['oneMy',]);
+        $this->middleware('can:isOwner,task')->only(['oneMy', 'destroy',]);
     }
 
     /**
@@ -81,5 +81,16 @@ class TaskController extends Controller
         }
 
         return $task;
+    }
+
+    /**
+     * Delete user task.
+     *
+     * @param  task ID
+     * @return json tasks | json tasks array
+     */
+    public function delete(Task $task){
+        $task->delete();
+        return response()->json($task, 200);
     }
 }
