@@ -62,10 +62,23 @@ Filling out the migration and applying it:
 
 Added the necessary properties and methods to the User and Task models.
 
+18.11.23
 Added "store tasks" functionality.
 New commit.
 
 Added "Get all user tasks" functionality.
 
 Added "Get one user task" functionality.
+New commit.
+
+2.The user cannot edit or delete other people's tasks.
+To implement this functionality, use Policies.
+
+Created TaskPolicy:
+	php artisan make:policy TaskPolicy
+
+Added isOwner() method to TaskPolicy.
+Mapping the model to policy in AuthServiceProvider.
+Applied the Policy to the necessary TaskController methods in the construct (oneMy).
+
 New commit.

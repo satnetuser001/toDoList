@@ -16,8 +16,8 @@ class TaskController extends Controller
         //any method can be used only by authorized users
         $this->middleware('auth:sanctum');
 
-        //it is be a Policy
-        //$this->middleware('can:isOwner,task')->only(['one', 'update', 'destroy']);
+        //Policy: only the owner of the task can view, edit, delete it.
+        $this->middleware('can:isOwner,task')->only(['oneMy',]);
     }
 
     /**
