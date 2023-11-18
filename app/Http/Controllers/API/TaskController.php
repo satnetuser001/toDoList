@@ -28,18 +28,8 @@ class TaskController extends Controller
      */
     public function store (Request $request){
         /*
-        //validating the request
-        $validator = Validator::make($request->all(), [
-            'status' => ['required', 'in:todo,done'],
-            'priority' => ['required', 'in:1,2,3,4,5'],
-            'title' => ['required', 'string', 'max:20000'],
-            'description' => ['nullable', 'string', 'max:5500000'],
-        ]); 
-
-        //if validation fails, return json response with an error
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
-        }
+        There should be validation here, but there is none in the test task.
+        Example of some validation see in commit 90fbaf8
         */
 
         $task = $this->createTask($request->all());
