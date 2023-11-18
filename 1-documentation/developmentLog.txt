@@ -40,3 +40,24 @@ New commit.
 
 Regenerate user token functionality was added: route and method in the controller.
 New commit.
+
+17.11.23
+Tasks functionality:
+There are many requirements for the "tasks", so we will implement them in parts.
+
+1. A task can have subtasks, the level of nesting is unlimited, use Enum, and use recursion.
+Created route.
+
+Created TaskController:
+	php artisan make:controller API/TaskController
+
+Created Task Model:
+	php artisan make:model Task
+
+Created Migration:
+	php artisan make:migration create_tasks_table --create=tasks
+
+Filling out the migration and applying it:
+	php artisan migrate
+
+Added the necessary properties and methods to the User and Task models.

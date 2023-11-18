@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
-//use App\Http\Controllers\API\TaskController;
+use App\Http\Controllers\API\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('users')->group(function () {
     Route::post('/register', [UserController::class, 'register']);
     Route::patch('/regenerateToken', [UserController::class, 'regenerateToken']);
+});
+
+//Task routes
+Route::prefix('tasks')->group(function () {
+    Route::post('/store', [TaskController::class, 'store']);
 });
