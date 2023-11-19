@@ -84,3 +84,8 @@ Applied the Policy to the necessary TaskController methods in the construct (one
 New commit.
 
 3. Added "delete task" functionality.
+New commit.
+
+19.11.23
+In the delete method add: A done task can't be deleted.
+New commit.

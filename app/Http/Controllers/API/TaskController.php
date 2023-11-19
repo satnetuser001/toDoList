@@ -90,6 +90,10 @@ class TaskController extends Controller
      * @return json tasks | json tasks array
      */
     public function delete(Task $task){
+        if ($task->status == "done") {
+            return response()->json(['error' => 'A done task can\'t be deleted'], 405);
+        }
+
         $task->delete();
         return response()->json($task, 200);
     }
