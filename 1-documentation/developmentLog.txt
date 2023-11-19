@@ -95,3 +95,7 @@ New commit.
 
 4a. Changing status is done using a separate method.
 New commit.
+
+20.11.23
+5. Added "filter task" functionality.
+New commit.

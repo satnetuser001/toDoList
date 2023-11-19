@@ -42,6 +42,17 @@ class TaskController extends Controller
     }
 
     /**
+     * Get filtered user tasks.
+     *
+     * @param  void
+     * @return json tasks array
+     */
+    public function filter($field, $type){
+        $tasks = Auth::user()->tasks()->where('parent_id', '=', NULL)->orderBy($field, $type)->get();
+        return response()->json($tasks, 200);
+    }
+
+    /**
      * Store a new task.
      *
      * @param  Request
@@ -125,6 +136,12 @@ class TaskController extends Controller
         return $task;
     }
 
+    /**
+     * Change task status.
+     *
+     * @param  Request, Task
+     * @return json tasks | json tasks array | json error
+     */
     public function status (Request $request, Task $task){
 
         //Check if any subtasks are not completed
@@ -168,7 +185,7 @@ class TaskController extends Controller
      * Delete user task.
      *
      * @param  task ID
-     * @return json tasks | json tasks array
+     * @return json tasks | json tasks array | json error
      */
     public function delete (Task $task){
         if ($task->status == "done") {

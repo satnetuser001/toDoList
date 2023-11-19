@@ -30,6 +30,7 @@ Route::prefix('users')->group(function () {
 Route::prefix('tasks')->group(function () {
     Route::get('/allMy', [TaskController::class, 'allMy']);
     Route::get('/{task}', [TaskController::class, 'oneMy']);
+    Route::get('/filter/{field}/{type}', [TaskController::class, 'filter']);
     Route::post('/store', [TaskController::class, 'store']);
     Route::patch('/update/{task}', [TaskController::class, 'update']);
     Route::patch('/status/{task}', [TaskController::class, 'status']);
