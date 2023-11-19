@@ -31,5 +31,6 @@ Route::prefix('tasks')->group(function () {
     Route::get('/allMy', [TaskController::class, 'allMy']);
     Route::get('/{task}', [TaskController::class, 'oneMy']);
     Route::post('/store', [TaskController::class, 'store']);
+    Route::patch('/{task}', [TaskController::class, 'update']);
     Route::delete('/{task}', [TaskController::class, 'delete']);
 });

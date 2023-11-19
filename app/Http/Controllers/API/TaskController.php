@@ -17,7 +17,7 @@ class TaskController extends Controller
         $this->middleware('auth:sanctum');
 
         //Policy: only the owner of the task can view, edit, delete it.
-        $this->middleware('can:isOwner,task')->only(['oneMy', 'destroy',]);
+        $this->middleware('can:isOwner,task')->only(['oneMy', 'update', 'destroy',]);
     }
 
     /**
@@ -45,7 +45,7 @@ class TaskController extends Controller
      * Store a new task.
      *
      * @param  Request
-     * @return json $token | json $validator->errors()
+     * @return json $task
      */
     public function store (Request $request){
         /*
@@ -77,6 +77,58 @@ class TaskController extends Controller
                 $childTask = $this->createTask($childData);
                 $childTask->parent_id = $task->id;
                 $childTask->save();
+            }
+        }
+
+        return $task;
+    }
+
+    /**
+     * Update a task.
+     *
+     * @param  Request, Task
+     * @return json $task
+     */
+    public function update (Request $request, Task $task){
+        /*
+        There should be validation here, but there is none in the test task.
+        Example of some validation see in commit 90fbaf8
+        */
+
+        $task = $this->updateTask($request->all(), $task);
+
+        //return response()->json($request->all(), 200);
+        return response()->json($task, 200);
+    }
+
+    protected function updateTask($data, $task)
+    {
+        //If the status of a task changes
+        if ($data['status'] == 'done' and $task['status'] != 'done') {
+            $task->update(['completed_at' => date('Y-m-d H:i:s')]);
+        }
+        elseif ($data['status'] == 'todo' and $task['status'] != 'todo') {
+            $task->update(['completed_at' => NULL]);
+        }
+
+        //update the task
+        $task->update([
+            'status' => $data['status'],
+            'priority' => $data['priority'],
+            'title' => $data['title'],
+            'description' => $data['description'],
+        ]);
+
+        //It would probably be more correct to call the “children” method recursively 
+        //on the model, but I haven’t figured out how to do this.
+
+        //update the children task
+        if (isset($data['children'])) {
+            foreach ($data['children'] as $childData) {
+                //Bug. To change nested tasks, you must pass their ID.
+                //The bug will be fixed using the “children” method of the Model.
+                $childObj = Task::find($childData['id']);
+                $this->updateTask($childData, $childObj);
             }
         }
 

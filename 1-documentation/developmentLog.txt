@@ -89,3 +89,6 @@ New commit.
 19.11.23
 In the delete method add: A done task can't be deleted.
 New commit.
+
+4. Added "update task" functionality.
+New commit.
