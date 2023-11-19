@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->enum('status', ['todo', 'done']);
+            $table->enum('status', ['todo', 'done'])->default('todo');
             $table->enum('priority', [1, 2, 3, 4, 5]);
             $table->text('title');
             $table->mediumText('description')->nullable();

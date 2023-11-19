@@ -92,3 +92,6 @@ New commit.
 
 4. Added "update task" functionality.
 New commit.
+
+4a. Changing status is done using a separate method.
+New commit.

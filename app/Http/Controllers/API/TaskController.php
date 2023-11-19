@@ -17,7 +17,7 @@ class TaskController extends Controller
         $this->middleware('auth:sanctum');
 
         //Policy: only the owner of the task can view, edit, delete it.
-        $this->middleware('can:isOwner,task')->only(['oneMy', 'update', 'destroy',]);
+        $this->middleware('can:isOwner,task')->only(['oneMy', 'update', 'status', 'destroy',]);
     }
 
     /**
@@ -61,7 +61,6 @@ class TaskController extends Controller
     protected function createTask($data)
     {
         $task = Auth::user()->tasks()->create([
-            'status' => $data['status'],
             'priority' => $data['priority'],
             'title' => $data['title'],
             'description' => $data['description'],
@@ -97,23 +96,14 @@ class TaskController extends Controller
 
         $task = $this->updateTask($request->all(), $task);
 
-        //return response()->json($request->all(), 200);
-        return response()->json($task, 200);
+        return response()->json($request->all(), 200);
+        //return response()->json($task, 200);
     }
 
-    protected function updateTask($data, $task)
-    {
-        //If the status of a task changes
-        if ($data['status'] == 'done' and $task['status'] != 'done') {
-            $task->update(['completed_at' => date('Y-m-d H:i:s')]);
-        }
-        elseif ($data['status'] == 'todo' and $task['status'] != 'todo') {
-            $task->update(['completed_at' => NULL]);
-        }
+    protected function updateTask($data, $task){
 
         //update the task
         $task->update([
-            'status' => $data['status'],
             'priority' => $data['priority'],
             'title' => $data['title'],
             'description' => $data['description'],
@@ -135,13 +125,52 @@ class TaskController extends Controller
         return $task;
     }
 
+    public function status (Request $request, Task $task){
+
+        //Check if any subtasks are not completed
+        if ($request['status'] == 'done' and $task->children()->where('status', '!=', 'done')->exists()) {
+            return response()->json(['error' => 'Cannot complete task until all subtasks are completed.'], 422);
+        }
+
+        // Check if the task is a subtask, and if its parent task is completed
+        if ($request['status'] == 'todo' and $task->parent and $task->parent->status == 'done') {
+            return response()->json(['error' => 'Cannot be todo until the parent task is completed.'], 422);
+        }
+
+        //Checking if the task has already been completed
+        if ($request['status'] == 'done' and $task['status'] == 'done') {
+            return response()->json(['error' => 'Task has already been completed.'], 422);
+        }
+
+        //Checking if the task has already been todo
+        if ($request['status'] == 'todo' and $task['status'] == 'todo') {
+            return response()->json(['error' => 'Task has already been todo.'], 422);
+        }
+
+        //If the status of a task changes
+        if ($request['status'] == 'done' and $task['status'] != 'done') {
+            $task->update([
+                'status' => 'done',
+                'completed_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+        elseif ($request['status'] == 'todo' and $task['status'] != 'todo') {
+            $task->update([
+                'status' => 'todo',
+                'completed_at' => NULL
+            ]);
+        }
+
+        return response()->json($task, 200);
+    }
+
     /**
      * Delete user task.
      *
      * @param  task ID
      * @return json tasks | json tasks array
      */
-    public function delete(Task $task){
+    public function delete (Task $task){
         if ($task->status == "done") {
             return response()->json(['error' => 'A done task can\'t be deleted'], 405);
         }
