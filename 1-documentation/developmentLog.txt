@@ -102,3 +102,39 @@ New commit.
 
 Seeds added.
 New commit.
+
+Making refresh a migration and seed:
+	php artisan migrate:fresh --seed
+This will reset the database and fill it with test data: two users with five first-level tasks for each.
+
+Generated authorization tokens for users with API requests with Postman:
+Method: patch;
+Route: http://localhost:8000/api/users/regenerateToken
+Request:
+	{
+	    "name": "apiUser1",
+	    "email": "apiUser1@gmail.com",
+	    "password": "1077",
+	    "program": "postman"
+	}
+Response:
+	{
+    	"newToken": "1|OOTg7jIh3DgkgGrWj6av1Oa5fQs8upUrU0r5AeXse649f0c5"
+	}
+
+Request:
+	{
+	    "name": "apiUser2",
+	    "email": "apiUser2@gmail.com",
+	    "password": "1077",
+	    "program": "postman"
+	}
+Response:
+	{
+	    "newToken": "2|p5NEsO2KKaqKEiyTgiDqKxEpGDv7bhaqnFkmORAwa4f4ea93"
+	}
+
+Made database dump in 1-documentation/dumpDB:
+	mysqldump -uroot -p to_do_list > to_do_list.sql
+
+New commit.
