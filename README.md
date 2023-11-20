@@ -17,9 +17,9 @@ The request and response examples were too large, so I put them in a separate fi
 
 --Users:
 
--Show user data;
--Create new user;
--Create a new user token (if you forgot the old one);
+-Show user data;<br>
+-Create new user;<br>
+-Create a new user token (if you forgot the old one);<br>
 
 --Tasks:
 
