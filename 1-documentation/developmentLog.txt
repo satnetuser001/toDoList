@@ -138,3 +138,7 @@ Made database dump in 1-documentation/dumpDB:
 	mysqldump -uroot -p to_do_list > to_do_list.sql
 
 New commit.
+
+Added application description to README.md
+Added examples of the API requests and responses to examplesRequests.txt
+New commit.

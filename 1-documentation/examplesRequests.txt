@@ -1,0 +1,543 @@
+--Users:
+
+-Show user1 data:
+	Request:
+		Method: GET
+		Route: http://localhost:8000/api/user
+		Bearer token: 1|OOTg7jIh3DgkgGrWj6av1Oa5fQs8upUrU0r5AeXse649f0c5
+	Response:
+		{
+		    "id": 1,
+		    "name": "apiUser1",
+		    "email": "apiUser1@gmail.com",
+		    "email_verified_at": null,
+		    "created_at": "2023-11-20T07:17:52.000000Z",
+		    "updated_at": "2023-11-20T07:17:52.000000Z"
+		}
+
+-Show user2 data:
+	Request:
+		Method: GET
+		Route: http://localhost:8000/api/user
+		Bearer token: 2|p5NEsO2KKaqKEiyTgiDqKxEpGDv7bhaqnFkmORAwa4f4ea93
+	Response:
+		{
+		    "id": 2,
+		    "name": "apiUser2",
+		    "email": "apiUser2@gmail.com",
+		    "email_verified_at": null,
+		    "created_at": "2023-11-20T07:17:53.000000Z",
+		    "updated_at": "2023-11-20T07:17:53.000000Z"
+		}
+
+-Create new user:
+	Request:
+		Method: POST
+		Route: http://localhost:8000/api/users/register
+		Body: 
+			{
+			    "name": "apiUser3",
+			    "email": "apiUser3@example.com",
+			    "password": "1077",
+			    "program": "postman"
+			}
+	Response:
+		{
+		    "token": "3|9b21LQIguGZ7rFTiZSi9VfeiMsI9DxEXkONX427s24de4db2"
+		}
+
+-Create a new user token (if you forgot the old one):
+	Request:
+		Method: PATCH
+		Route: http://localhost:8000/api/users/regenerateToken
+		Body: 
+			{
+			    "name": "apiUser3",
+			    "email": "apiUser3@example.com",
+			    "password": "1077",
+			    "program": "postman"
+			}
+	Response:
+		{
+		    "newToken": "4|30c7Xnw62DjCBYaqijJ7LVO9LIPv7jrxPkcyDcMM1179a0ac"
+		}
+
+--Tasks:
+
+-Get all user tasks:
+	Request:
+		Method: GET
+		Route: http://localhost:8000/api/tasks/allMy
+		Bearer token: 1|OOTg7jIh3DgkgGrWj6av1Oa5fQs8upUrU0r5AeXse649f0c5
+	Response:
+		[
+		    {
+		        "id": 9,
+		        "user_id": 1,
+		        "status": "todo",
+		        "priority": "5",
+		        "title": "Title 3/1",
+		        "description": "Un3yi6",
+		        "parent_id": null,
+		        "completed_at": null,
+		        "created_at": "2023-11-20T07:17:53.000000Z",
+		        "updated_at": "2023-11-20T07:17:53.000000Z",
+		        "children": [
+		            {
+		                "id": 10,
+		                "user_id": 1,
+		                "status": "todo",
+		                "priority": "1",
+		                "title": "Title 3/1/1",
+		                "description": "fT5sI",
+		                "parent_id": 9,
+		                "completed_at": null,
+		                "created_at": "2023-11-20T07:17:53.000000Z",
+		                "updated_at": "2023-11-20T07:17:53.000000Z",
+		                "children": []
+		            },
+		            {
+		                "id": 11,
+		                "user_id": 1,
+		                "status": "todo",
+		                "priority": "4",
+		                "title": "Title 3/1/2",
+		                "description": "vFBKBV",
+		                "parent_id": 9,
+		                "completed_at": null,
+		                "created_at": "2023-11-20T07:17:53.000000Z",
+		                "updated_at": "2023-11-20T07:17:53.000000Z",
+		                "children": [
+		                    {
+		                        "id": 12,
+		                        "user_id": 1,
+		                        "status": "todo",
+		                        "priority": "3",
+		                        "title": "Title 3/1/2/1",
+		                        "description": "5LaRSFZp",
+		                        "parent_id": 11,
+		                        "completed_at": null,
+		                        "created_at": "2023-11-20T07:17:53.000000Z",
+		                        "updated_at": "2023-11-20T07:17:53.000000Z",
+		                        "children": []
+		                    }
+		                ]
+		            }
+		        ]
+		    },
+... The response is too big, so I cut out the middle ...
+		    {
+		        "id": 5,
+		        "user_id": 1,
+		        "status": "todo",
+		        "priority": "4",
+		        "title": "Title 2/1",
+		        "description": "54FAdys",
+		        "parent_id": null,
+		        "completed_at": null,
+		        "created_at": "2023-11-20T07:17:52.000000Z",
+		        "updated_at": "2023-11-20T07:17:52.000000Z",
+		        "children": [
+		            {
+		                "id": 6,
+		                "user_id": 1,
+		                "status": "todo",
+		                "priority": "5",
+		                "title": "Title 2/1/1",
+		                "description": "cf3OtZAT",
+		                "parent_id": 5,
+		                "completed_at": null,
+		                "created_at": "2023-11-20T07:17:52.000000Z",
+		                "updated_at": "2023-11-20T07:17:52.000000Z",
+		                "children": []
+		            },
+		            {
+		                "id": 7,
+		                "user_id": 1,
+		                "status": "todo",
+		                "priority": "2",
+		                "title": "Title 2/1/2",
+		                "description": "pvJDvOJus",
+		                "parent_id": 5,
+		                "completed_at": null,
+		                "created_at": "2023-11-20T07:17:52.000000Z",
+		                "updated_at": "2023-11-20T07:17:52.000000Z",
+		                "children": [
+		                    {
+		                        "id": 8,
+		                        "user_id": 1,
+		                        "status": "todo",
+		                        "priority": "2",
+		                        "title": "Title 2/1/2/1",
+		                        "description": "v3Uyu",
+		                        "parent_id": 7,
+		                        "completed_at": null,
+		                        "created_at": "2023-11-20T07:17:52.000000Z",
+		                        "updated_at": "2023-11-20T07:17:52.000000Z",
+		                        "children": []
+		                    }
+		                ]
+		            }
+		        ]
+		    }
+		]
+
+-Get user task with all subtasks (you can get subtask that way too):
+	Request:
+		Method: GET
+		Route: http://localhost:8000/api/tasks/11 - 11 is the id of the task
+		Bearer token: 1|OOTg7jIh3DgkgGrWj6av1Oa5fQs8upUrU0r5AeXse649f0c5
+	Response:
+		{
+		    "id": 11,
+		    "user_id": 1,
+		    "status": "todo",
+		    "priority": "4",
+		    "title": "Title 3/1/2",
+		    "description": "vFBKBV",
+		    "parent_id": 9,
+		    "completed_at": null,
+		    "created_at": "2023-11-20T07:17:53.000000Z",
+		    "updated_at": "2023-11-20T07:17:53.000000Z",
+		    "children": [
+		        {
+		            "id": 12,
+		            "user_id": 1,
+		            "status": "todo",
+		            "priority": "3",
+		            "title": "Title 3/1/2/1",
+		            "description": "5LaRSFZp",
+		            "parent_id": 11,
+		            "completed_at": null,
+		            "created_at": "2023-11-20T07:17:53.000000Z",
+		            "updated_at": "2023-11-20T07:17:53.000000Z",
+		            "children": []
+		        }
+		    ]
+		}
+
+-Get all user tasks with a sort (to sort, you need to pass the “field name” by which we will sort and the “sort type”):
+	Request:
+		Method: GET
+		Route: http://localhost:8000/api/tasks/filter/priority/desc
+		Bearer token: 1|OOTg7jIh3DgkgGrWj6av1Oa5fQs8upUrU0r5AeXse649f0c5
+	Response:
+		[
+		    {
+		        "id": 9,
+		        "user_id": 1,
+		        "status": "todo",
+		        "priority": "5",
+		        "title": "Title 3/1",
+		        "description": "Un3yi6",
+		        "parent_id": null,
+		        "completed_at": null,
+		        "created_at": "2023-11-20T07:17:53.000000Z",
+		        "updated_at": "2023-11-20T07:17:53.000000Z",
+		        "children": [
+		            {
+		                "id": 10,
+		                "user_id": 1,
+		                "status": "todo",
+		                "priority": "1",
+		                "title": "Title 3/1/1",
+		                "description": "fT5sI",
+		                "parent_id": 9,
+		                "completed_at": null,
+		                "created_at": "2023-11-20T07:17:53.000000Z",
+		                "updated_at": "2023-11-20T07:17:53.000000Z",
+		                "children": []
+		            },
+		            {
+		                "id": 11,
+		                "user_id": 1,
+		                "status": "todo",
+		                "priority": "4",
+		                "title": "Title 3/1/2",
+		                "description": "vFBKBV",
+		                "parent_id": 9,
+		                "completed_at": null,
+		                "created_at": "2023-11-20T07:17:53.000000Z",
+		                "updated_at": "2023-11-20T07:17:53.000000Z",
+		                "children": [
+		                    {
+		                        "id": 12,
+		                        "user_id": 1,
+		                        "status": "todo",
+		                        "priority": "3",
+		                        "title": "Title 3/1/2/1",
+		                        "description": "5LaRSFZp",
+		                        "parent_id": 11,
+		                        "completed_at": null,
+		                        "created_at": "2023-11-20T07:17:53.000000Z",
+		                        "updated_at": "2023-11-20T07:17:53.000000Z",
+		                        "children": []
+		                    }
+		                ]
+		            }
+		        ]
+		    },
+... The response is too big, so I cut out the middle ...
+		    {
+		        "id": 1,
+		        "user_id": 1,
+		        "status": "todo",
+		        "priority": "1",
+		        "title": "Title 1/1",
+		        "description": "K9oeR3Hf",
+		        "parent_id": null,
+		        "completed_at": null,
+		        "created_at": "2023-11-20T07:17:52.000000Z",
+		        "updated_at": "2023-11-20T07:17:52.000000Z",
+		        "children": [
+		            {
+		                "id": 2,
+		                "user_id": 1,
+		                "status": "todo",
+		                "priority": "4",
+		                "title": "Title 1/1/1",
+		                "description": "qtBgyPxkh",
+		                "parent_id": 1,
+		                "completed_at": null,
+		                "created_at": "2023-11-20T07:17:52.000000Z",
+		                "updated_at": "2023-11-20T07:17:52.000000Z",
+		                "children": []
+		            },
+		            {
+		                "id": 3,
+		                "user_id": 1,
+		                "status": "todo",
+		                "priority": "4",
+		                "title": "Title 1/1/2",
+		                "description": "07mh76",
+		                "parent_id": 1,
+		                "completed_at": null,
+		                "created_at": "2023-11-20T07:17:52.000000Z",
+		                "updated_at": "2023-11-20T07:17:52.000000Z",
+		                "children": [
+		                    {
+		                        "id": 4,
+		                        "user_id": 1,
+		                        "status": "todo",
+		                        "priority": "5",
+		                        "title": "Title 1/1/2/1",
+		                        "description": "tAbutTsfr3",
+		                        "parent_id": 3,
+		                        "completed_at": null,
+		                        "created_at": "2023-11-20T07:17:52.000000Z",
+		                        "updated_at": "2023-11-20T07:17:52.000000Z",
+		                        "children": []
+		                    }
+		                ]
+		            }
+		        ]
+		    }
+		]
+-Store user task with subtask:
+	Request:
+		Method: POST
+		Route: http://localhost:8000/api/tasks/store
+		Bearer token: 4|30c7Xnw62DjCBYaqijJ7LVO9LIPv7jrxPkcyDcMM1179a0ac
+		Body:
+			{
+			    "priority": "5",
+			    "title": "Test title 5",
+			    "description": "Test description 5",
+			    "children":[
+			        {
+			            "priority": "5",
+			            "title": "Test title 5/1",
+			            "description": "Test description 5/1"
+			        },
+			        {
+			            "priority": "5",
+			            "title": "Test title 5/2",
+			            "description": "Test description 5/2",
+			            "children":[
+			               {
+			                    "priority": "5",
+			                    "title": "Test title 5/2/1",
+			                    "description": "Test description 5/2/1"
+			                }
+			            ]
+			        }
+			    ]
+			}
+	Response:
+		{
+		    "priority": "5",
+		    "title": "Test title 5",
+		    "description": "Test description 5",
+		    "children": [
+		        {
+		            "priority": "5",
+		            "title": "Test title 5/1",
+		            "description": "Test description 5/1"
+		        },
+		        {
+		            "priority": "5",
+		            "title": "Test title 5/2",
+		            "description": "Test description 5/2",
+		            "children": [
+		                {
+		                    "priority": "5",
+		                    "title": "Test title 5/2/1",
+		                    "description": "Test description 5/2/1"
+		                }
+		            ]
+		        }
+		    ]
+		}
+
+-Update user task with subtask:
+	Request:
+		Method: POST
+		Route: http://localhost:8000/api/tasks/update/41 - 41 is the ID of the root task
+		Bearer token: 4|30c7Xnw62DjCBYaqijJ7LVO9LIPv7jrxPkcyDcMM1179a0ac
+		Body:
+			{
+		        "id": 41,
+		        "priority": "5",
+		        "title": "Changed Test title 5",
+		        "description": "Test description 5",
+		        "children": [
+		            {
+		                "id": 42,
+		                "priority": "5",
+		                "title": "Test title 5/1",
+		                "description": "Changed Test description 5/1",
+		                "children": []
+		            },
+		            {
+		                "id": 43,
+		                "priority": "5",
+		                "title": "Changed Test title 5/2",
+		                "description": "Changed Test description 5/2",
+		                "children": [
+		                    {
+		                        "id": 44,
+		                        "priority": "1",
+		                        "title": "Test title 5/2/1",
+		                        "description": "Changed Test description 5/2/1",
+		                        "children": []
+		                    }
+		                ]
+		            }
+		        ]
+		    }
+	Response:
+		{
+		    "id": 41,
+		    "priority": "5",
+		    "title": "Changed Test title 5",
+		    "description": "Test description 5",
+		    "children": [
+		        {
+		            "id": 42,
+		            "priority": "5",
+		            "title": "Test title 5/1",
+		            "description": "Changed Test description 5/1",
+		            "children": []
+		        },
+		        {
+		            "id": 43,
+		            "priority": "5",
+		            "title": "Changed Test title 5/2",
+		            "description": "Changed Test description 5/2",
+		            "children": [
+		                {
+		                    "id": 44,
+		                    "priority": "1",
+		                    "title": "Test title 5/2/1",
+		                    "description": "Changed Test description 5/2/1",
+		                    "children": []
+		                }
+		            ]
+		        }
+		    ]
+		}
+
+-Change task status (cannot be completed if the subtask is not completed):
+	Request:
+		Method: PATCH
+		Route: http://localhost:8000/api/tasks/status/44 - 44 is the ID of the task
+		Bearer token: 4|30c7Xnw62DjCBYaqijJ7LVO9LIPv7jrxPkcyDcMM1179a0ac
+		Body:
+			{
+			    "status": "done"
+			}
+	Response:
+		{
+		    "id": 44,
+		    "user_id": 3,
+		    "status": "done",
+		    "priority": "1",
+		    "title": "Test title 5/2/1",
+		    "description": "Changed Test description 5/2/1",
+		    "parent_id": 43,
+		    "completed_at": "2023-11-20 09:39:22",
+		    "created_at": "2023-11-20T09:22:02.000000Z",
+		    "updated_at": "2023-11-20T09:39:22.000000Z",
+		    "children": []
+		}
+
+-Delete a task (all subtasks will be deleted too):
+	Request:
+		Method: DELETE
+		Route: http://localhost:8000/api/tasks/41 - 41 is the ID of the task
+		Bearer token: 4|30c7Xnw62DjCBYaqijJ7LVO9LIPv7jrxPkcyDcMM1179a0ac
+	Response:
+		{
+		    "id": 41,
+		    "user_id": 3,
+		    "status": "todo",
+		    "priority": "5",
+		    "title": "Changed Test title 5",
+		    "description": "Test description 5",
+		    "parent_id": null,
+		    "completed_at": null,
+		    "created_at": "2023-11-20T09:22:02.000000Z",
+		    "updated_at": "2023-11-20T09:34:58.000000Z",
+		    "children": [
+		        {
+		            "id": 42,
+		            "user_id": 3,
+		            "status": "todo",
+		            "priority": "5",
+		            "title": "Test title 5/1",
+		            "description": "Changed Test description 5/1",
+		            "parent_id": 41,
+		            "completed_at": null,
+		            "created_at": "2023-11-20T09:22:02.000000Z",
+		            "updated_at": "2023-11-20T09:34:58.000000Z",
+		            "children": []
+		        },
+		        {
+		            "id": 43,
+		            "user_id": 3,
+		            "status": "todo",
+		            "priority": "5",
+		            "title": "Changed Test title 5/2",
+		            "description": "Changed Test description 5/2",
+		            "parent_id": 41,
+		            "completed_at": null,
+		            "created_at": "2023-11-20T09:22:02.000000Z",
+		            "updated_at": "2023-11-20T09:34:58.000000Z",
+		            "children": [
+		                {
+		                    "id": 44,
+		                    "user_id": 3,
+		                    "status": "done",
+		                    "priority": "1",
+		                    "title": "Test title 5/2/1",
+		                    "description": "Changed Test description 5/2/1",
+		                    "parent_id": 43,
+		                    "completed_at": "2023-11-20 09:39:22",
+		                    "created_at": "2023-11-20T09:22:02.000000Z",
+		                    "updated_at": "2023-11-20T09:39:22.000000Z",
+		                    "children": []
+		                }
+		            ]
+		        }
+		    ]
+		}
